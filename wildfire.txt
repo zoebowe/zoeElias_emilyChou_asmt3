@@ -1,0 +1,42 @@
+Lightning T F
+DryConditions T F
+HumanActivity T F
+Wind T F
+OtherFire T F
+WildFire T F
+SpreadRapidly T F
+SmokeReported T F
+# Parents
+WildFire Lightning DryConditions HumanActivity
+SpreadRapidly Wind WildFire
+SmokeReported WildFire OtherFire
+# Tables
+Lightning
+0.08
+DryConditions
+0.45
+HumanActivity
+0.09
+Wind
+0.34
+OtherFire
+0.27
+WildFire
+T T T 0.85
+T T F 0.60
+T F T 0.50
+T F F 0.30
+F T T 0.40
+F T F 0.15
+F F T 0.12
+F F F 0.001
+SpreadRapidly
+T T 0.90
+T F 0.001
+F T 0.65
+F F 0.000
+SmokeReported
+T T 0.97
+T F 0.80
+F T 0.88
+F F 0.02
