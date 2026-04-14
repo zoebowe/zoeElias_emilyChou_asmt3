@@ -162,7 +162,11 @@ def joint_probability(net: BayesNet, assignment: dict) -> float:
     Returns:
         Product over variables X of P(X = assignment[X] | Parents(X) = assignment[Parents(X)]).
     """
-    raise NotImplementedError
+    p = 1.0
+    for var in net.order:
+        value = assignment[var]
+        p *= net.prob(var, value, assignment)
+    return p
 
 
 def update(distribution: dict, value, p: float) -> None:
@@ -173,7 +177,7 @@ def update(distribution: dict, value, p: float) -> None:
         value: a domain value of the query variable
         p: nonnegative probability mass to add
     """
-    raise NotImplementedError
+    distribution[value] += p
 
 def normalize(distribution: dict) -> None:
     """Normalize a one-dimensional distribution so its values sum to 1.
@@ -185,7 +189,11 @@ def normalize(distribution: dict) -> None:
         - If the sum is 0, leave the distribution unchanged.
         - Otherwise, divide each mass by the total.
     """
-    raise NotImplementedError
+    total = sum(distribution.values())
+    if total == 0:
+        return
+    for value in distribution:
+        distribution[value] /= total
 
 
 # --------------------------
